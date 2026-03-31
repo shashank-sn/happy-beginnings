@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soleil — Kabir & Riya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:  #000000;
+  --blk-1:  #0a0a0a;
+  --blk-2:  #111111;
+  --gold:   #c9943a;
+  --cream:  rgba(253,250,246,0.82);
+  --dim:    rgba(253,250,246,0.32);
+  --hair:   rgba(201,148,58,0.22);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--cream); font-family: 'Jost', sans-serif; font-weight: 200; overflow-x: hidden; }
+
+/* Film grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation: grain 0.8s steps(1) infinite;
+}
+@keyframes grain {
+  0%  { background-position: 0 0; }
+  10% { background-position: -50px -80px; }
+  20% { background-position: 80px -20px; }
+  30% { background-position: -30px 60px; }
+  40% { background-position: 70px 70px; }
+  50% { background-position: -80px 30px; }
+  60% { background-position: 20px -70px; }
+  70% { background-position: -60px -40px; }
+  80% { background-position: 40px 50px; }
+  90% { background-position: -20px 80px; }
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 60px;
+  position: relative;
+  text-align: center;
+  background: var(--black);
+}
+.hero-roman {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(6rem, 18vw, 18rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.03);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 200;
+  letter-spacing: 0.8em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 52px;
+  opacity: 0; animation: fa 1.5s ease 0.4s forwards;
+}
+.hero-names {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.92);
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  opacity: 0; animation: fa 2s ease 0.8s forwards;
+}
+.hero-amp {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.6em;
+  margin: 20px 0;
+  opacity: 0; animation: fa 1.5s ease 1.2s forwards;
+}
+.hero-hairline {
+  width: 80px;
+  height: 1px;
+  background: var(--hair);
+  margin: 48px auto 0;
+  opacity: 0; animation: fa 1.5s ease 1.4s forwards;
+}
+.hero-date {
+  font-size: 0.6rem;
+  font-weight: 200;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 18px;
+  opacity: 0; animation: fa 1.5s ease 1.6s forwards;
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0; animation: fa 1.5s ease 1.8s forwards;
+}
+.scroll-cue span {
+  display: block;
+  font-size: 0.5rem;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: rgba(253,250,246,0.2);
+  margin-bottom: 8px;
+}
+.s-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin: 0 auto;
+  animation: sp 2.5s ease infinite;
+}
+
+/* HAIRLINE DIVIDER */
+.hdiv {
+  width: 100%;
+  height: 1px;
+  background: var(--hair);
+}
+
+/* MONOGRAM */
+.monogram {
+  padding: 120px 60px;
+  text-align: center;
+  background: var(--blk-1);
+  position: relative;
+}
+.mono-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(5rem, 14vw, 13rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.04);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  pointer-events: none;
+  margin-bottom: -2rem;
+}
+.mono-quote {
+  position: relative;
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  color: var(--dim);
+  letter-spacing: 0.12em;
+  line-height: 2;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* EVENTS / CREDITS */
+.events {
+  padding: 120px 60px;
+  background: var(--black);
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.sec-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.7em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.55;
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.78);
+  letter-spacing: 0.08em;
+  margin-bottom: 72px;
+  line-height: 1;
+}
+.credit-list { max-width: 600px; margin: 0 auto; }
+.credit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(201,148,58,0.1);
+  gap: 20px;
+}
+.credit-item:first-child { border-top: 1px solid rgba(201,148,58,0.1); }
+.credit-role {
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 200;
+  flex-shrink: 0;
+}
+.credit-dots {
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(to right, rgba(201,148,58,0.18) 0, rgba(201,148,58,0.18) 2px, transparent 2px, transparent 6px);
+  margin: 0 16px;
+  align-self: center;
+}
+.credit-val {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  color: rgba(253,250,246,0.68);
+  text-align: right;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* FAMILIES */
+.families {
+  padding: 120px 60px;
+  background: var(--blk-1);
+  text-align: center;
+}
+.fam-duo {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  max-width: 700px;
+  margin: 60px auto 0;
+  align-items: start;
+}
+.fam-side {}
+.fam-role {
+  font-size: 0.52rem;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+.fam-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.78);
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.fam-parents {
+  font-size: 0.75rem;
+  color: var(--dim);
+  line-height: 2;
+  font-weight: 200;
+}
+.fam-sep {
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+.fam-vline { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, rgba(201,148,58,0.25), transparent); }
+.fam-amp {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  opacity: 0.55;
+}
+
+/* GALLERY */
+.gallery {
+  padding: 120px 60px;
+  background: var(--black);
+}
+.gal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 2px;
+  margin-top: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gal-item { overflow: hidden; background: var(--blk-2); }
+.gal-item.tall { grid-row: span 2; }
+.gal-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.5) brightness(0.75) contrast(1.1);
+  transition: filter 0.8s ease, transform 0.8s ease;
+}
+.gal-item:hover img {
+  filter: saturate(0.7) brightness(0.82);
+  transform: scale(1.04);
+}
+
+/* VENUE */
+.venue {
+  padding: 120px 60px;
+  background: var(--blk-1);
+  text-align: center;
+}
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  max-width: 700px;
+  margin: 60px auto 0;
+  background: rgba(201,148,58,0.12);
+}
+.vc {
+  background: var(--black);
+  padding: 44px 36px;
+  text-align: left;
+}
+.vc-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.52;
+  margin-bottom: 16px;
+}
+.vc-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(253,250,246,0.75);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.vc-time {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 18px;
+  font-weight: 200;
+}
+.vc-addr {
+  font-size: 0.75rem;
+  color: var(--dim);
+  line-height: 2;
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+.vc-link {
+  font-size: 0.52rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201,148,58,0.55);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,148,58,0.2);
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+.vc-link:hover { color: var(--gold); }
+
+/* FOOTER */
+footer {
+  padding: 120px 60px 80px;
+  background: var(--black);
+  text-align: center;
+  border-top: 1px solid rgba(201,148,58,0.1);
+}
+.ft-names {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.6rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: rgba(253,250,246,0.82);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.ft-date {
+  font-size: 0.58rem;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.45;
+  margin-bottom: 56px;
+}
+.ft-rule { width: 40px; height: 1px; background: rgba(201,148,58,0.2); margin: 0 auto 36px; }
+.ft-blessing {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 200;
+  color: var(--dim);
+  line-height: 2.2;
+  max-width: 400px;
+  margin: 0 auto 40px;
+  letter-spacing: 0.05em;
+}
+.ft-made {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(253,250,246,0.15);
+}
+.ft-made a { color: rgba(201,148,58,0.35); text-decoration: none; }
+
+.reveal { opacity: 0; transition: opacity 1.2s ease; }
+.reveal.visible { opacity: 1; }
+
+@keyframes fa { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sp { 0%,100% { opacity: 0.25; } 50% { opacity: 0.8; } }
+
+@media (max-width: 768px) {
+  .hero, .monogram, .events, .families, .gallery, .venue, footer { padding-left: 28px; padding-right: 28px; }
+  .events { padding-top: 80px; padding-bottom: 80px; max-width: 100%; }
+  .fam-duo { grid-template-columns: 1fr; gap: 32px; }
+  .fam-sep { display: none; }
+  .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item.tall { grid-row: span 1; height: 220px; }
+  .venue-grid { grid-template-columns: 1fr; }
+  .credit-dots { display: none; }
+  .credit-item { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-roman">MMXXVI</div>
+  <p class="hero-eyebrow">The Wedding of</p>
+  <div class="hero-names">
+    Kabir
+    <span class="hero-amp">& </span>
+    Riya
+  </div>
+  <div class="hero-hairline"></div>
+  <p class="hero-date">XIV · February · MMXXVI · Mumbai</p>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="s-line"></div>
+  </div>
+</section>
+
+<div class="hdiv"></div>
+
+<!-- MONOGRAM -->
+<section class="monogram reveal">
+  <div class="mono-letter">K & R</div>
+  <p class="mono-quote">
+    "In you, I found everything I was never looking for."
+  </p>
+</section>
+
+<div class="hdiv"></div>
+
+<!-- EVENTS -->
+<section class="events reveal" style="padding-left: max(60px, calc((100vw - 900px)/2)); padding-right: max(60px, calc((100vw - 900px)/2));">
+  <p class="sec-label">The Programme</p>
+  <h2 class="sec-title">Celebrations</h2>
+  <div class="credit-list">
+    <div class="credit-item reveal">
+      <span class="credit-role">Sangeet</span>
+      <div class="credit-dots"></div>
+      <span class="credit-val">12 Feb · 9:00 PM · Antares, Bandra</span>
+    </div>
+    <div class="credit-item reveal">
+      <span class="credit-role">Cocktail Reception</span>
+      <div class="credit-dots"></div>
+      <span class="credit-val">13 Feb · 8:00 PM · Aer Rooftop Bar, Mumbai</span>
+    </div>
+    <div class="credit-item reveal">
+      <span class="credit-role">Wedding Ceremony</span>
+      <div class="credit-dots"></div>
+      <span class="credit-val">14 Feb · 11:00 AM · The Taj Ballroom</span>
+    </div>
+    <div class="credit-item reveal">
+      <span class="credit-role">Wedding Dinner</span>
+      <div class="credit-dots"></div>
+      <span class="credit-val">14 Feb · 7:30 PM · The Crystal Room</span>
+    </div>
+  </div>
+</section>
+
+<div class="hdiv"></div>
+
+<!-- FAMILIES -->
+<section class="families reveal">
+  <p class="sec-label">With the blessings of</p>
+  <h2 class="sec-title">Our Families</h2>
+  <div class="fam-duo">
+    <div class="fam-side" style="text-align:right; padding-right: 40px; border-right: 1px solid rgba(201,148,58,0.1);">
+      <p class="fam-role">Groom</p>
+      <p class="fam-name">Kabir Malhotra</p>
+      <p class="fam-parents">
+        Son of<br>
+        Mr. Arun Malhotra<br>
+        Mrs. Sunita Malhotra<br>
+        Mumbai
+      </p>
+    </div>
+    <div class="fam-sep">
+      <div class="fam-vline"></div>
+      <span class="fam-amp">&</span>
+      <div class="fam-vline"></div>
+    </div>
+    <div class="fam-side" style="text-align:left; padding-left: 40px; border-left: 1px solid rgba(201,148,58,0.1);">
+      <p class="fam-role">Bride</p>
+      <p class="fam-name">Riya Kapoor</p>
+      <p class="fam-parents">
+        Daughter of<br>
+        Mr. Raj Kapoor<br>
+        Mrs. Pooja Kapoor<br>
+        Mumbai
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="hdiv"></div>
+
+<!-- GALLERY -->
+<section class="gallery reveal">
+  <p class="sec-label">Our journey</p>
+  <h2 class="sec-title">Together</h2>
+  <div class="gal-grid">
+    <div class="gal-item tall">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1523268755815-fe8a2ced0cd3?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1470290378698-263fa7ca60ab?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="hdiv"></div>
+
+<!-- VENUE -->
+<section class="venue reveal">
+  <p class="sec-label">Join us</p>
+  <h2 class="sec-title">Where & When</h2>
+  <div class="venue-grid">
+    <div class="vc">
+      <div class="vc-label">Ceremony</div>
+      <div class="vc-name">The Taj Mahal Palace</div>
+      <div class="vc-time">14 February 2026 · 11:00 AM</div>
+      <p class="vc-addr">Apollo Bunder, Colaba<br>Mumbai — 400 001</p>
+      <a href="https://maps.google.com" class="vc-link" target="_blank">Open in Maps →</a>
+    </div>
+    <div class="vc">
+      <div class="vc-label">Wedding Dinner</div>
+      <div class="vc-name">The Crystal Room</div>
+      <div class="vc-time">14 February 2026 · 7:30 PM</div>
+      <p class="vc-addr">The Taj Mahal Palace, Colaba<br>Mumbai — 400 001</p>
+      <a href="https://maps.google.com" class="vc-link" target="_blank">Open in Maps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-names">Kabir & Riya</div>
+  <div class="ft-date">XIV · II · MMXXVI · Mumbai</div>
+  <div class="ft-rule"></div>
+  <p class="ft-blessing">
+    Not all love stories are told in whispers —<br>
+    some are announced to the world.
+  </p>
+  <p class="ft-made">Crafted with love by <a href="https://happybeginnings.in" target="_blank">Happy Beginnings</a></p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.filter(e => e.isIntersecting).forEach((e, i) => {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

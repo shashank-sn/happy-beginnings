@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Beginnings — Digital Wedding Invites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F9F5EF;
+    --warm-white: #FDFAF6;
+    --gold: #B8955A;
+    --gold-light: #D4AF78;
+    --dark: #1A1612;
+    --mid: #4A3F35;
+    --muted: #8C7D6E;
+    --border: rgba(184,149,90,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253,250,246,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--dark);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    padding: 9px 22px;
+    transition: all 0.3s ease;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--warm-white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(184,149,90,0.1) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 85% 85%, rgba(184,149,90,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 10% 70%, rgba(184,149,90,0.04) 0%, transparent 60%);
+  }
+  /* Subtle decorative pattern in hero background */
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image:
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+  .hero-ornament {
+    font-size: 0.72rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-ornament::before, .hero-ornament::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    max-width: 500px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .hero-price-block {
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .price-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    justify-content: center;
+  }
+  .price-old {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.55;
+  }
+  .price-new {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.4rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--warm-white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 17px 52px;
+    transition: all 0.3s ease;
+  }
+  .hero-btn:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+  }
+  .hero-btn-secondary {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .hero-btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.4s forwards;
+  }
+  .hero-scroll span {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto;
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--dark);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253,250,246,0.45);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .trust-item::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 40px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+  .divider-motif {
+    color: var(--gold);
+    font-size: 0.9rem;
+    opacity: 0.55;
+  }
+
+  /* SECTION TITLES */
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-sub {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 80px 24px;
+    background: var(--cream);
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 900px;
+    margin: 60px auto 0;
+    border: 1px solid var(--border);
+  }
+  .how-step {
+    padding: 52px 36px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .how-step:hover { transform: translateY(-4px); background: #fff; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* TEMPLATES */
+  .templates-section {
+    padding: 80px 24px 100px;
+  }
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1160px;
+    margin: 60px auto 0;
+  }
+  .template-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-decoration: none;
+    display: block;
+    group: true;
+  }
+  .template-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 64px rgba(26,22,18,0.14);
+  }
+  .template-preview {
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+  }
+  .template-preview > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    gap: 14px;
+  }
+  /* Hover overlay */
+  .template-preview::after {
+    content: 'Preview →';
+    position: absolute;
+    inset: 0;
+    background: rgba(26,22,18,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+  }
+  .template-card:hover .template-preview::after { opacity: 1; }
+
+  /* Template colour themes — each reflects its new design language */
+  /* South Indian "Tamil Silk" — dark editorial, crimson + silk gold */
+  .tpl-south-indian { background: linear-gradient(160deg, #1a0408 0%, #3d0a12 55%, #1a0408 100%); }
+  /* Christian "Cathedral" — deep navy with gold light rays */
+  .tpl-christian    { background: linear-gradient(160deg, #080f1a 0%, #0d1b2e 50%, #0f2a4a 100%); }
+  /* Modern "Studio" — pure white editorial */
+  .tpl-modern       { background: #ffffff; border: 1px solid #e8e4de; }
+  /* Muslim "Ilahi" — ivory with teal, light theme */
+  .tpl-muslim       { background: linear-gradient(160deg, #faf8f3 0%, #f3efe6 55%, #faf8f3 100%); }
+  /* North Indian "Darbar" — deep crimson, maximalist */
+  .tpl-north-indian { background: linear-gradient(160deg, #1e0408 0%, #3d0a12 50%, #5c0e1a 100%); }
+  /* Luxury "Soleil" — pure black */
+  .tpl-luxury       { background: #000000; }
+  /* Floral "Garden Letter" — warm ivory, light theme */
+  .tpl-floral       { background: linear-gradient(160deg, #faf6ef 0%, #f5ede0 55%, #faf6ef 100%); }
+  /* North Indian Muslim "Shairi" — deep plum */
+  .tpl-muslim-2     { background: linear-gradient(160deg, #0e0118 0%, #1e0828 50%, #2a0d38 100%); }
+  /* Jain "Moksha" — pure white, serene */
+  .tpl-jain         { background: #ffffff; border: 1px solid #dde5de; }
+
+  .tpl-label-top {
+    font-size: 0.58rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .tpl-motif { font-size: 1.6rem; opacity: 0.75; line-height: 1; }
+  .tpl-couple {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.88);
+    text-align: center;
+    line-height: 1.35;
+  }
+  .tpl-and {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.38);
+  }
+  .tpl-date {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+  .tpl-divider-line { width: 48px; height: 1px; background: rgba(255,255,255,0.15); }
+  .tpl-gold { color: rgba(184,149,90,0.85) !important; }
+
+  /* Kolam border */
+  .kolam-border {
+    border: 1px solid rgba(184,149,90,0.35);
+    padding: 18px 28px;
+    text-align: center;
+    position: relative;
+  }
+  .kolam-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: rgba(184,149,90,0.55);
+    border-style: solid;
+  }
+  .kolam-corner.tl { top: 3px; left: 3px; border-width: 1px 0 0 1px; }
+  .kolam-corner.tr { top: 3px; right: 3px; border-width: 1px 1px 0 0; }
+  .kolam-corner.bl { bottom: 3px; left: 3px; border-width: 0 0 1px 1px; }
+  .kolam-corner.br { bottom: 3px; right: 3px; border-width: 0 1px 1px 0; }
+
+  /* Crescent for muslim */
+  .crescent-motif {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(164,210,164,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .crescent-motif::after {
+    content: '';
+    position: absolute;
+    top: -2px; left: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #163832;
+  }
+
+  /* Floral accent */
+  .floral-ring {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 1px solid rgba(210,160,170,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .template-info {
+    padding: 22px 26px;
+    background: var(--warm-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .template-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--dark);
+  }
+  .template-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .template-arrow {
+    color: var(--gold);
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+  .template-card:hover .template-arrow { transform: translateX(5px); }
+
+  /* FEATURES */
+  .features-section {
+    padding: 80px 24px;
+    background: var(--cream);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    max-width: 1000px;
+    margin: 60px auto 0;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .feature-item {
+    background: var(--warm-white);
+    padding: 40px 28px;
+    transition: background 0.3s ease;
+  }
+  .feature-item:hover { background: #fff; }
+  .feature-icon { font-size: 1.3rem; margin-bottom: 14px; }
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .feature-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+
+  /* TESTIMONIAL STRIP */
+  .testimonial-section {
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    max-width: 960px;
+    margin: 60px auto 0;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .testimonial-item {
+    background: var(--cream);
+    padding: 40px 32px;
+    text-align: left;
+  }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .testimonial-author {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .testimonial-author strong { color: var(--gold); display: block; margin-bottom: 2px; }
+  .stars {
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-bottom: 16px;
+    letter-spacing: 3px;
+  }
+
+  /* PRICING */
+  .pricing-section {
+    padding: 80px 24px 100px;
+    background: var(--cream);
+    text-align: center;
+  }
+  .pricing-card {
+    max-width: 500px;
+    margin: 60px auto 0;
+    border: 1px solid var(--gold);
+    padding: 60px 52px;
+    position: relative;
+    background: var(--warm-white);
+  }
+  .pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--warm-white);
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 6px 22px;
+    white-space: nowrap;
+  }
+  .pricing-card .price-old {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.55;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .pricing-card .price-new {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .pricing-tagline {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pricing-includes {
+    list-style: none;
+    margin: 36px 0;
+    text-align: left;
+  }
+  .pricing-includes li {
+    font-size: 0.85rem;
+    color: var(--mid);
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .pricing-includes li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 0.55rem;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .pricing-cta {
+    display: flex;
+    width: 100%;
+    background: var(--gold);
+    color: var(--warm-white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 19px 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+  }
+  .pricing-cta:hover { background: var(--dark); }
+  .pricing-note {
+    margin-top: 18px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .pricing-note strong { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--warm-white);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+  .footer-wa {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color 0.3s ease;
+  }
+  .footer-wa:hover { border-color: var(--gold); }
+
+  /* WHATSAPP FLOATING BTN */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 54px;
+    height: 54px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 2s forwards;
+  }
+  .wa-float:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+  .wa-float svg { width: 26px; height: 26px; fill: white; }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-logo { font-size: 1rem; }
+    .hero { padding: 100px 20px 70px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .templates-grid { grid-template-columns: 1fr; gap: 16px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 48px 28px; }
+    footer { flex-direction: column; text-align: center; }
+    .trust-bar { gap: 20px; padding: 14px 20px; }
+    .wa-float { bottom: 20px; right: 20px; }
+  }
+  @media (max-width: 480px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOATING -->
+<a href="https://wa.me/919894020051?text=Hi%21%20I%27m%20interested%20in%20a%20digital%20wedding%20invite.%20I%20saw%20the%20%E2%82%B9999%20offer." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Happy <span>Beginnings</span></a>
+  <a href="https://wa.me/919894020051?text=Hi%21%20I%27m%20interested%20in%20a%20digital%20wedding%20invite.%20I%20saw%20the%20%E2%82%B9999%20offer." class="nav-cta" target="_blank" rel="noopener">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-ornament">Digital Wedding Invites</div>
+  <h1>Your Love Story,<br><em>Beautifully Delivered.</em></h1>
+  <p class="hero-sub">A handcrafted digital invite — done entirely for you. Share one link with your guests. No app needed.</p>
+  <div class="hero-price-block">
+    <p class="price-label">Launch Offer — Limited Spots</p>
+    <div class="price-row">
+      <span class="price-old">₹9,999</span>
+      <span class="price-new">₹999</span>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <a href="https://wa.me/919894020051?text=Hi%21%20I%27m%20interested%20in%20a%20digital%20wedding%20invite.%20I%20saw%20the%20%E2%82%B9999%20offer." class="hero-btn" target="_blank" rel="noopener">
+      Claim Your Invite
+    </a>
+    <a href="#templates" class="hero-btn-secondary">See our templates ↓</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-item">Done For You</span>
+  <span class="trust-item">Delivered in 48 Hours</span>
+  <span class="trust-item">7 Unique Templates</span>
+  <span class="trust-item">Mobile-First Design</span>
+  <span class="trust-item">Instant Updates Included</span>
+</div>
+
+<div class="section-divider"><span class="divider-motif">✦</span></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <p class="section-label reveal">How it works</p>
+  <h2 class="section-title reveal">Three Steps to <em>Perfection</em></h2>
+  <div class="how-grid">
+    <div class="how-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Choose a Template</div>
+      <p class="step-desc">Pick a design that speaks to your story — South Indian, Christian, North Indian, and more.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">We Build It for You</div>
+      <p class="step-desc">Send us your details over WhatsApp. Our team customises every element — your names, events, photos, music, and venue links.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Share One Link</div>
+      <p class="step-desc">Your guests open a full invite experience in their browser — on any phone, no app needed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-motif">✦</span></div>
+
+<!-- TEMPLATES -->
+<section class="templates-section" id="templates">
+  <p class="section-label reveal">Our Templates</p>
+  <h2 class="section-title reveal">Choose Your <em>Aesthetic</em></h2>
+  <p class="section-sub reveal">Nine distinct design languages — each one a complete, immersive invite experience.</p>
+
+  <div class="templates-grid">
+
+    <!-- 1. South Indian Hindu — Tamil Silk (dark editorial, crimson) -->
+    <a href="template-south-indian.html" class="template-card reveal" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-south-indian">
+          <span class="tpl-label-top" style="color:rgba(196,136,42,0.6);">Tamil Silk · Editorial</span>
+          <div style="width:40px; height:1px; background:rgba(196,136,42,0.35); margin:0 auto;"></div>
+          <div class="tpl-couple" style="font-size:1.7rem; color:rgba(253,247,238,0.92);">Arjun<br><span class="tpl-and" style="color:rgba(196,136,42,0.8); font-size:0.9rem;">&</span><br>Meenakshi</div>
+          <div style="width:40px; height:1px; background:rgba(196,136,42,0.35); margin:0 auto;"></div>
+          <div class="tpl-date" style="color:rgba(196,136,42,0.5);">Tamil Hindu Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Maangalyam</div><div class="template-tag">South Indian Hindu</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 2. Indian Christian — Cathedral (deep navy, jewel tones) -->
+    <a href="template-christian.html" class="template-card reveal reveal-delay-1" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-christian">
+          <span class="tpl-label-top" style="color:rgba(200,149,42,0.55); letter-spacing:0.5em;">Cathedral</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin:4px 0;">
+            <div style="width:1.5px;height:22px;background:rgba(200,149,42,0.6);"></div>
+            <div style="width:12px;height:1.5px;background:rgba(200,149,42,0.6);margin-top:-14px;"></div>
+          </div>
+          <div class="tpl-couple" style="font-family:'Georgia',serif; letter-spacing:0.05em; color:rgba(253,250,244,0.9);">Rohan<br><span class="tpl-and" style="color:rgba(200,149,42,0.8);">&</span><br>Priya</div>
+          <div class="tpl-date" style="color:rgba(200,149,42,0.5); letter-spacing:0.4em;">A Christian Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Grace & Light</div><div class="template-tag">Indian Christian</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 3. Modern — Studio (pure white, Swiss typography) -->
+    <a href="template-modern.html" class="template-card reveal reveal-delay-2" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-modern">
+          <span class="tpl-label-top" style="color:rgba(10,10,10,0.35); letter-spacing:0.6em;">Studio</span>
+          <div style="width:100%; height:1px; background:rgba(184,149,90,0.4); margin:8px 0;"></div>
+          <div class="tpl-couple" style="font-size:2.4rem; color:rgba(10,10,10,0.88); letter-spacing:0.04em; font-weight:700;">A & N</div>
+          <div style="width:100%; height:1px; background:rgba(10,10,10,0.1); margin:8px 0;"></div>
+          <div class="tpl-date" style="color:rgba(10,10,10,0.35); letter-spacing:0.5em;">Modern Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Studio</div><div class="template-tag">Modern / Neutral</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 4. South Indian Muslim — Ilahi (ivory + teal, light theme) -->
+    <a href="template-muslim.html" class="template-card reveal reveal-delay-3" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-muslim">
+          <span class="tpl-label-top" style="color:rgba(13,64,51,0.5); letter-spacing:0.5em;">Ilahi · Nikah</span>
+          <div style="color:#c8922a; font-size:1.5rem; line-height:1; margin:4px 0; text-align:center;">بِسْمِ اللَّهِ</div>
+          <div style="width:40px; height:1px; background:rgba(200,146,42,0.4); margin:6px auto;"></div>
+          <div class="tpl-couple" style="color:rgba(13,64,51,0.85); font-size:1.35rem;">Farhan<br><span class="tpl-and" style="color:rgba(200,146,42,0.8);">&</span><br>Zara</div>
+          <div class="tpl-date" style="color:rgba(13,64,51,0.4);">Malabar Muslim Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Ilahi</div><div class="template-tag">South Indian Muslim</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 5. North Indian Hindu — Darbar (dark crimson, maximalist) -->
+    <a href="template-north-indian.html" class="template-card reveal" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-north-indian">
+          <span class="tpl-label-top" style="color:rgba(232,146,42,0.55);">Darbar · शुभ विवाह</span>
+          <div style="border:1px solid rgba(232,146,42,0.35); padding:14px 20px; position:relative;">
+            <div style="position:absolute;top:-1px;left:-1px;width:8px;height:8px;background:rgba(232,146,42,0.6);clip-path:polygon(0 0,100% 0,100% 25%,25% 25%,25% 100%,0 100%);"></div>
+            <div style="position:absolute;top:-1px;right:-1px;width:8px;height:8px;background:rgba(232,146,42,0.6);clip-path:polygon(0 0,100% 0,100% 100%,75% 100%,75% 25%,0 25%);"></div>
+            <div style="position:absolute;bottom:-1px;left:-1px;width:8px;height:8px;background:rgba(232,146,42,0.6);clip-path:polygon(0 0,25% 0,25% 75%,100% 75%,100% 100%,0 100%);"></div>
+            <div style="position:absolute;bottom:-1px;right:-1px;width:8px;height:8px;background:rgba(232,146,42,0.6);clip-path:polygon(75% 0,100% 0,100% 100%,0 100%,0 75%,75% 75%);"></div>
+            <div class="tpl-couple" style="color:rgba(253,247,238,0.92); font-size:1.45rem;">Vikram<br><span class="tpl-and" style="color:rgba(232,146,42,0.8);">&</span><br>Anjali</div>
+          </div>
+          <div class="tpl-date" style="color:rgba(232,146,42,0.45);">North Indian Hindu Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Darbar</div><div class="template-tag">North Indian Hindu</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 6. Luxury Black & Gold — Soleil (pure black, film credits) -->
+    <a href="template-luxury.html" class="template-card reveal reveal-delay-1" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-luxury">
+          <span class="tpl-label-top" style="color:rgba(184,149,90,0.45); letter-spacing:0.7em;">Soleil</span>
+          <div style="width:48px; height:0.5px; background:rgba(184,149,90,0.3);"></div>
+          <div class="tpl-couple" style="font-size:2rem; letter-spacing:0.06em; color:rgba(253,250,246,0.88); font-weight:700;">K & R</div>
+          <div style="width:48px; height:0.5px; background:rgba(184,149,90,0.3);"></div>
+          <div class="tpl-date" style="color:rgba(184,149,90,0.45); letter-spacing:0.55em; font-weight:300;">MMXXV</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Soleil</div><div class="template-tag">Luxury Black & Gold</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 7. Floral / Pastel — Garden Letter (warm ivory, light theme) -->
+    <a href="template-floral.html" class="template-card reveal reveal-delay-2" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-floral">
+          <span class="tpl-label-top" style="color:rgba(122,45,69,0.45); letter-spacing:0.5em;">Garden Letter</span>
+          <div style="color:rgba(78,116,88,0.55); font-size:1.2rem; margin:4px 0; text-align:center;">❧</div>
+          <div class="tpl-couple" style="color:rgba(122,45,69,0.88); font-style:italic; font-size:1.5rem;">Siddharth<br><span class="tpl-and" style="color:rgba(78,116,88,0.7);">&</span><br>Riya</div>
+          <div class="tpl-date" style="color:rgba(122,45,69,0.4);">A Garden Wedding</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Rosé</div><div class="template-tag">Floral / Pastel</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 8. North Indian Muslim — Shairi (deep plum, literary) -->
+    <a href="template-muslim-2.html" class="template-card reveal reveal-delay-3" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-muslim-2">
+          <span class="tpl-label-top" style="color:rgba(200,146,42,0.5); letter-spacing:0.5em;">Shairi · شاعری</span>
+          <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0;">
+            <div style="height:1px;width:28px;background:linear-gradient(to right,transparent,rgba(200,146,42,0.5));"></div>
+            <span style="color:rgba(200,146,42,0.7);font-size:0.8rem;">✦</span>
+            <div style="height:1px;width:28px;background:linear-gradient(to left,transparent,rgba(200,146,42,0.5));"></div>
+          </div>
+          <div class="tpl-couple" style="color:rgba(253,246,232,0.92); font-size:1.45rem;">Zaid<br><span class="tpl-and" style="color:rgba(200,146,42,0.8); font-style:italic;">&</span><br><em style="color:rgba(232,196,122,0.88);">Noor</em></div>
+          <div class="tpl-date" style="color:rgba(200,146,42,0.4); letter-spacing:0.4em;">North Indian Muslim</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Shairi</div><div class="template-tag">North Indian Muslim</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 9. Jain — Moksha (pure white, serene) -->
+    <a href="template-jain.html" class="template-card reveal reveal-delay-4" target="_blank">
+      <div class="template-preview">
+        <div class="tpl-jain">
+          <span class="tpl-label-top" style="color:rgba(14,32,21,0.4); letter-spacing:0.5em;">Moksha · Jai Jinendra</span>
+          <div style="color:rgba(200,104,32,0.5); font-size:1rem; text-align:center; letter-spacing:0.06em; margin:2px 0;">☸</div>
+          <div style="width:40px; height:1px; background:rgba(200,104,32,0.25); margin:6px auto;"></div>
+          <div class="tpl-couple" style="color:rgba(14,32,21,0.82); font-size:1.45rem;">Dhruv<br><span class="tpl-and" style="color:rgba(200,104,32,0.6);">&</span><br>Priya</div>
+          <div class="tpl-date" style="color:rgba(14,32,21,0.35);">Jain Wedding · Ahmedabad</div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div><div class="template-name">Parampara</div><div class="template-tag">Jain Wedding</div></div>
+        <span class="template-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-motif">✦</span></div>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <p class="section-label reveal">What you get</p>
+  <h2 class="section-title reveal">Everything <em>Done for You</em></h2>
+  <div class="features-grid">
+    <div class="feature-item reveal">
+      <div class="feature-icon">🖌️</div>
+      <div class="feature-title">Full Customisation</div>
+      <p class="feature-desc">Names, events, venue maps, photos — all set up by our team exactly how you want it.</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">Mobile-First Design</div>
+      <p class="feature-desc">Looks stunning on every phone. Your elderly relatives included.</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">🔗</div>
+      <div class="feature-title">One Link to Share</div>
+      <p class="feature-desc">WhatsApp it. Text it. Email it. One link opens a full invite experience.</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">✏️</div>
+      <div class="feature-title">Instant Updates</div>
+      <p class="feature-desc">Venue changed? Timing shifted? We update it instantly — no reprints, no re-sharing.</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">📍</div>
+      <div class="feature-title">Smart Links</div>
+      <p class="feature-desc">Google Maps, RSVP, wedding Instagram — all built in and click-ready.</p>
+    </div>
+    <div class="feature-item reveal">
+      <div class="feature-icon">🎵</div>
+      <div class="feature-title">Your Music</div>
+      <p class="feature-desc">Add any song you love. Your guests hear your story the moment they open the invite.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-motif">✦</span></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+  <p class="section-label reveal">Love from couples</p>
+  <h2 class="section-title reveal">What They're <em>Saying</em></h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-item reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"Our guests couldn't stop complimenting the invite. Everyone thought we spent a fortune on it. ₹999 was honestly unbelievable."</p>
+      <div class="testimonial-author"><strong>Priya & Karthik</strong>Chennai · South Indian Wedding</div>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"The team set everything up in less than 24 hours. We just sent them our details on WhatsApp and they handled the rest. So easy."</p>
+      <div class="testimonial-author"><strong>Anjali & Roshan</strong>Bangalore · Christian Wedding</div>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"I didn't want a generic digital invite. This felt like a real, premium experience. Our relatives in the US loved being able to open it instantly."</p>
+      <div class="testimonial-author"><strong>Divya & Suresh</strong>Hyderabad · South Indian Wedding</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-motif">✦</span></div>
+
+<!-- PRICING -->
+<section class="pricing-section" id="get-started">
+  <p class="section-label reveal">Pricing</p>
+  <h2 class="section-title reveal">One Price. <em>Complete Service.</em></h2>
+  <p class="section-sub reveal">No hidden charges. No DIY builders. We do everything.</p>
+  <div class="pricing-card reveal">
+    <div class="pricing-badge">Limited Launch Offer</div>
+    <span class="price-old">₹9,999</span>
+    <span class="price-new">₹999</span>
+    <p class="pricing-tagline">Done-for-you digital wedding invite</p>
+    <ul class="pricing-includes">
+      <li>Template of your choice — fully customised</li>
+      <li>Your names, events, family details set up</li>
+      <li>Pre-wedding photo gallery included</li>
+      <li>Venue location & Google Maps link</li>
+      <li>Background music of your choice</li>
+      <li>Mobile + desktop responsive design</li>
+      <li>Instant edits even after sharing</li>
+      <li>Delivered within 48 hours</li>
+    </ul>
+    <a href="https://wa.me/919894020051?text=Hi%21%20I%27m%20interested%20in%20a%20digital%20wedding%20invite.%20I%20saw%20the%20%E2%82%B9999%20offer." class="pricing-cta" target="_blank" rel="noopener">
+      Get My Invite on WhatsApp
+    </a>
+    <p class="pricing-note">Only <strong>20 spots</strong> at this price. No reprints. No hassle.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Happy <span>Beginnings</span></div>
+  <div class="footer-copy">© 2025 Happy Beginnings · happybeginnings.in</div>
+  <a href="https://wa.me/919894020051?text=Hi%21%20I%27m%20interested%20in%20a%20digital%20wedding%20invite.%20I%20saw%20the%20%E2%82%B9999%20offer." class="footer-wa" target="_blank" rel="noopener">WhatsApp Us</a>
+</footer>
+
+<script>
+  // Scroll reveal with stagger
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting);
+    visible.forEach((entry, i) => {
+      setTimeout(() => entry.target.classList.add('visible'), i * 90);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '14px 40px' : '20px 40px';
+  });
+</script>
+</body>
+</html>

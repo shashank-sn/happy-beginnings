@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cathedral — Rohan & Priya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0d1b2e;
+    --ruby: #5c1427;
+    --sapphire: #0f2a4a;
+    --gold: #c8952a;
+    --gold-light: #e8c47a;
+    --ivory: #fdfaf4;
+    --cream: #f5f0e8;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'EB Garamond', serif; background: var(--navy); color: var(--ivory); overflow-x: hidden; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  /* Radiant light rays from top */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 120%;
+    background: conic-gradient(
+      from 260deg at 50% 0%,
+      transparent 0deg,
+      rgba(200,149,42,0.06) 8deg,
+      transparent 16deg,
+      rgba(200,149,42,0.04) 24deg,
+      transparent 32deg,
+      rgba(232,196,122,0.07) 40deg,
+      transparent 48deg,
+      rgba(200,149,42,0.05) 56deg,
+      transparent 64deg,
+      rgba(200,149,42,0.03) 72deg,
+      transparent 80deg,
+      rgba(232,196,122,0.06) 88deg,
+      transparent 96deg,
+      rgba(200,149,42,0.04) 104deg,
+      transparent 112deg
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Rose window circle */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,149,42,0.15);
+    box-shadow:
+      0 0 0 30px rgba(200,149,42,0.04),
+      0 0 0 60px rgba(200,149,42,0.03),
+      0 0 0 100px rgba(200,149,42,0.02);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  /* CSS Cross */
+  .cross-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .cross {
+    position: relative;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--gold), rgba(200,149,42,0.3));
+    animation: crossGlow 3s ease-in-out infinite;
+  }
+  .cross::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(200,149,42,0.3), var(--gold), rgba(200,149,42,0.3));
+  }
+  @keyframes crossGlow {
+    0%, 100% { box-shadow: 0 0 8px rgba(200,149,42,0.4), 0 0 20px rgba(200,149,42,0.15); }
+    50% { box-shadow: 0 0 16px rgba(200,149,42,0.7), 0 0 40px rgba(200,149,42,0.3), 0 0 80px rgba(200,149,42,0.1); }
+  }
+
+  .hero-names {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 400;
+    color: var(--ivory);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero-names .ampersand {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.65em;
+    color: var(--gold);
+    display: block;
+    margin: 8px 0;
+  }
+
+  .hero-date-line {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: rgba(253,250,244,0.55);
+    margin-bottom: 64px;
+  }
+
+  .hero-verse {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(253,250,244,0.6);
+    max-width: 360px;
+    line-height: 1.7;
+  }
+  .hero-verse cite {
+    display: block;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-top: 12px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.6s forwards;
+  }
+  .scroll-indicator span {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    color: rgba(253,250,244,0.4);
+    margin-bottom: 10px;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto;
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translate(-50%, 12px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; }
+  .reveal { opacity: 0; transition: opacity 0.9s ease, transform 0.9s ease; transform: translateY(20px); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ── SECTION: SCRIPTURE (white bg) ── */
+  .sec-scripture {
+    background: var(--ivory);
+    color: var(--navy);
+    padding: 100px 40px;
+    text-align: center;
+  }
+  .sec-scripture .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    margin-bottom: 36px;
+    display: block;
+  }
+  .scripture-text {
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-style: italic;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 24px;
+    color: var(--navy);
+  }
+  .scripture-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+  }
+  .sec-scripture .divider-band {
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 60px auto 0;
+    width: 200px;
+  }
+
+  /* ── SECTION: FAMILIES (ruby bg) ── */
+  .sec-families {
+    background: var(--ruby);
+    color: var(--ivory);
+    padding: 100px 40px;
+  }
+  .sec-families .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    margin-bottom: 60px;
+    display: block;
+    text-align: center;
+  }
+  .families-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .family-divider {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(200,149,42,0.4), transparent);
+  }
+  .family-block { text-align: center; }
+  .family-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .family-head {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .family-detail {
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(253,250,244,0.7);
+  }
+
+  /* ── SECTION: EVENTS (white bg) ── */
+  .sec-events {
+    background: var(--cream);
+    color: var(--navy);
+    padding: 100px 40px;
+  }
+  .sec-events .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    margin-bottom: 60px;
+    display: block;
+    text-align: center;
+  }
+  .events-list {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .event-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(13,27,46,0.1);
+    align-items: start;
+  }
+  .event-row:first-child { border-top: 1px solid rgba(13,27,46,0.1); }
+  .event-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: rgba(13,27,46,0.08);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .event-body {}
+  .event-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--navy);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .event-detail {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(13,27,46,0.65);
+    line-height: 1.6;
+  }
+  .event-time {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ── SECTION: GALLERY (dark navy) ── */
+  .sec-gallery {
+    background: var(--navy);
+    padding: 100px 40px;
+  }
+  .sec-gallery .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    margin-bottom: 60px;
+    display: block;
+    text-align: center;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .gallery-cell {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-cell.wide {
+    grid-column: span 2;
+    aspect-ratio: 16/10;
+  }
+  .gallery-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .gallery-cell:hover img { transform: scale(1.04); }
+
+  /* Stained glass color overlay on hover */
+  .gallery-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    mix-blend-mode: color;
+  }
+  .gallery-cell:nth-child(1)::after { background: rgba(15,42,74,0.3); }
+  .gallery-cell:nth-child(2)::after { background: rgba(92,20,39,0.3); }
+  .gallery-cell:nth-child(3)::after { background: rgba(13,27,46,0.3); }
+  .gallery-cell:hover::after { opacity: 1; }
+
+  /* ── SECTION: VENUE (sapphire bg) ── */
+  .sec-venue {
+    background: var(--sapphire);
+    color: var(--ivory);
+    padding: 100px 40px;
+    text-align: center;
+  }
+  .sec-venue .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    margin-bottom: 48px;
+    display: block;
+  }
+  .venue-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .venue-address {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(253,250,244,0.65);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .venue-meta {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .venue-meta-item { text-align: center; }
+  .venue-meta-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .venue-meta-val {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER (navy) ── */
+  footer {
+    background: #080f1a;
+    color: rgba(253,250,244,0.4);
+    text-align: center;
+    padding: 72px 40px;
+    border-top: 1px solid rgba(200,149,42,0.15);
+  }
+  .footer-names {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: rgba(253,250,244,0.7);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+  .footer-cross {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .footer-cross-mark {
+    position: relative;
+    width: 1px;
+    height: 28px;
+    background: rgba(200,149,42,0.4);
+  }
+  .footer-cross-mark::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 1px;
+    background: rgba(200,149,42,0.4);
+  }
+  .footer-verse {
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(253,250,244,0.35);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .footer-bottom {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    color: rgba(253,250,244,0.2);
+  }
+
+  /* ── COLOR BAND dividers ── */
+  .color-band {
+    height: 6px;
+  }
+  .band-gold { background: linear-gradient(to right, transparent, var(--gold), transparent); }
+  .band-ruby { background: linear-gradient(to right, var(--ruby) 0%, #7a1c34 50%, var(--ruby) 100%); height: 3px; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    .families-grid { grid-template-columns: 1fr; gap: 40px; }
+    .family-divider { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-cell.wide { grid-column: span 2; }
+    .event-row { grid-template-columns: 48px 1fr; gap: 0 20px; }
+    .venue-meta { gap: 30px; }
+    .hero-names { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal">A Christian Wedding Celebration</p>
+    <div class="cross-wrap reveal">
+      <div class="cross"></div>
+    </div>
+    <h1 class="hero-names reveal">
+      Rohan Matthew
+      <span class="ampersand">&</span>
+      Priya Thomas
+    </h1>
+    <p class="hero-date-line reveal">12 April 2026 · Kottayam</p>
+    <blockquote class="hero-verse reveal">
+      "And now these three remain: faith, hope and love. But the greatest of these is love."
+      <cite>1 Corinthians 13:13</cite>
+    </blockquote>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ SCRIPTURE ══ -->
+<section class="sec-scripture">
+  <span class="section-tag reveal">A Word of Blessing</span>
+  <blockquote class="scripture-text reveal">
+    "Two are better than one, because they have a good return for their labor:
+    If either of them falls down, one can help the other up."
+  </blockquote>
+  <p class="scripture-ref reveal">Ecclesiastes 4:9–10</p>
+  <div class="divider-band reveal"></div>
+</section>
+
+<div class="color-band band-gold"></div>
+
+<!-- ══ FAMILIES ══ -->
+<section class="sec-families">
+  <span class="section-tag reveal">The Families</span>
+  <div class="families-grid">
+    <div class="family-block reveal">
+      <span class="family-label">Bride's Family</span>
+      <h2 class="family-head">George Thomas<br>&amp; Mary Thomas</h2>
+      <p class="family-detail">
+        Thiruvalla · Marthoma Church<br>
+        Request the honour of your presence<br>
+        at the wedding of their daughter
+      </p>
+    </div>
+    <div class="family-divider"></div>
+    <div class="family-block reveal">
+      <span class="family-label">Groom's Family</span>
+      <h2 class="family-head">Philip Matthew<br>&amp; Elsa Matthew</h2>
+      <p class="family-detail">
+        Kottayam · CSI Church<br>
+        And their son, who is joined<br>
+        in holy matrimony this day
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="color-band band-gold"></div>
+
+<!-- ══ EVENTS ══ -->
+<section class="sec-events">
+  <span class="section-tag reveal">Order of Celebrations</span>
+  <div class="events-list">
+    <div class="event-row reveal">
+      <span class="event-num">01</span>
+      <div class="event-body">
+        <p class="event-name">Holy Matrimony</p>
+        <p class="event-detail">CSI All Saints' Church, Baker Junction, Kottayam<br>White tie ceremony with full choir</p>
+        <span class="event-time">12 April 2026 · 10:00 AM</span>
+      </div>
+    </div>
+    <div class="event-row reveal">
+      <span class="event-num">02</span>
+      <div class="event-body">
+        <p class="event-name">Wedding Reception</p>
+        <p class="event-detail">Coconut Lagoon Resort, Kumarakom<br>Dinner, dancing and celebration</p>
+        <span class="event-time">12 April 2026 · 7:00 PM</span>
+      </div>
+    </div>
+    <div class="event-row reveal">
+      <span class="event-num">03</span>
+      <div class="event-body">
+        <p class="event-name">Bridal Shower</p>
+        <p class="event-detail">Thomas Residence, Thiruvalla<br>Ladies' luncheon and blessings</p>
+        <span class="event-time">10 April 2026 · 12:00 PM</span>
+      </div>
+    </div>
+    <div class="event-row reveal">
+      <span class="event-num">04</span>
+      <div class="event-body">
+        <p class="event-name">Thanksgiving Prayer</p>
+        <p class="event-detail">Marthoma Church, Thiruvalla<br>A morning of gratitude and worship</p>
+        <span class="event-time">13 April 2026 · 9:00 AM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="color-band band-gold"></div>
+
+<!-- ══ GALLERY ══ -->
+<section class="sec-gallery">
+  <span class="section-tag reveal">Together</span>
+  <div class="gallery-grid reveal">
+    <div class="gallery-cell wide">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80" alt="couple">
+    </div>
+    <div class="gallery-cell">
+      <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80" alt="rings">
+    </div>
+    <div class="gallery-cell">
+      <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&q=80" alt="flowers">
+    </div>
+    <div class="gallery-cell">
+      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="bride">
+    </div>
+    <div class="gallery-cell wide">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=80" alt="church">
+    </div>
+  </div>
+</section>
+
+<div class="color-band band-gold"></div>
+
+<!-- ══ VENUE ══ -->
+<section class="sec-venue">
+  <span class="section-tag reveal">The Venue</span>
+  <h2 class="venue-name reveal">CSI All Saints' Church</h2>
+  <p class="venue-address reveal">
+    Baker Junction<br>
+    Kottayam, Kerala — 686 001
+  </p>
+  <div class="venue-meta reveal">
+    <div class="venue-meta-item">
+      <span class="venue-meta-label">Date</span>
+      <p class="venue-meta-val">12 April 2026</p>
+    </div>
+    <div class="venue-meta-item">
+      <span class="venue-meta-label">Time</span>
+      <p class="venue-meta-val">10:00 AM</p>
+    </div>
+    <div class="venue-meta-item">
+      <span class="venue-meta-label">Dress Code</span>
+      <p class="venue-meta-val">Formal / White Tie</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-cross">
+    <div class="footer-cross-mark"></div>
+  </div>
+  <p class="footer-names">Rohan Matthew &amp; Priya Thomas</p>
+  <p class="footer-verse">
+    "What therefore God has joined together, let not man put asunder."<br>
+    <em style="font-size:0.78rem; color: rgba(253,250,244,0.25);">Mark 10:9</em>
+  </p>
+  <p class="footer-bottom">With Love &amp; God's Blessings · 2026</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Stagger hero reveals
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${0.2 + i * 0.18}s`;
+    setTimeout(() => el.classList.add('in'), (0.2 + i * 0.18) * 1000);
+  });
+</script>
+</body>
+</html>
